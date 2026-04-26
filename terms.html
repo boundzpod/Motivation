@@ -1,35 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service – motivationpj</title>
-  <style>
-    body { font-family: sans-serif; max-width: 720px; margin: 60px auto; padding: 0 20px; color: #222; line-height: 1.7; }
-    h1 { font-size: 1.8rem; } h2 { font-size: 1.2rem; margin-top: 2rem; }
-    p { margin: 0.5rem 0; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Terms of Service — The Motivation PJ</title>
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F7F5EF;
+    --ink:#0F1B2D;
+    --ink-soft:#3A4658;
+    --rule:#E5E1D6;
+    --card:#FFFFFF;
+    --accent:#FF4D1F;
+    --accent-ink:#FFFFFF;
+    --navy:#0F2A44;
+    --display:'Anton','Archivo Black',system-ui,sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --maxw:1280px;
+    --pad:clamp(20px,4vw,56px);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+  /* Legal bar */
+  .legalbar{
+    background:var(--ink);color:color-mix(in srgb,var(--bg) 55%,transparent);
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    display:flex;justify-content:flex-end;align-items:center;gap:20px;
+    padding:0 var(--pad);height:30px;
+  }
+  .legalbar a{color:color-mix(in srgb,var(--bg) 55%,transparent);transition:color .2s}
+  .legalbar a:hover{color:var(--accent)}
+  .legalbar a.active{color:var(--accent)}
+  .legalbar a + a{padding-left:20px;border-left:1px solid rgba(255,255,255,.18)}
+
+  /* Nav */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+  .brand-logo{height:32px;width:auto}
+  .brand-name{font-family:var(--display);font-size:20px;letter-spacing:.04em;text-transform:uppercase}
+  .brand-name em{font-style:normal;color:var(--accent)}
+  .nav-links{display:flex;gap:28px;font-size:13px;font-weight:500;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--bg);
+    padding:9px 14px;border-radius:999px;font-weight:600;font-size:13px;
+    transition:transform .2s,background .2s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);background:var(--accent);color:#fff}
+  .nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  /* Page header */
+  .page-header{
+    padding:clamp(48px,7vw,96px) 0 clamp(32px,4vw,56px);
+    border-bottom:1px solid var(--rule);
+  }
+  .page-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .page-title{
+    font-family:var(--display);
+    font-size:clamp(42px,7vw,100px);
+    line-height:.92;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 18px;
+  }
+  .page-title .accent{color:var(--accent)}
+  .page-meta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* Content */
+  .content{
+    max-width:720px;
+    padding:clamp(48px,6vw,80px) 0 clamp(64px,8vw,110px);
+  }
+  .content h2{
+    font-family:var(--display);
+    font-size:clamp(20px,2.5vw,28px);
+    letter-spacing:.03em;text-transform:uppercase;
+    margin:2.5rem 0 .6rem;
+    color:var(--ink);
+  }
+  .content h2 .num{
+    font-family:var(--mono);font-size:.55em;color:var(--accent);
+    letter-spacing:.1em;vertical-align:middle;margin-right:.5em;
+  }
+  .content p{color:var(--ink-soft);margin:.4rem 0;line-height:1.7}
+  .content ul{color:var(--ink-soft);margin:.4rem 0 .4rem 1.2rem;line-height:1.7}
+  .content ul li{margin-bottom:.3rem}
+  .content a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .content a:hover{opacity:.8}
+  .divider{border:none;border-top:1px solid var(--rule);margin:0}
+
+  /* Footer */
+  .foot{
+    border-top:1px solid var(--rule);padding:30px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:14px;
+  }
+  .foot .legal{letter-spacing:.04em}
+  .foot .arrow-up{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--rule);
+    display:grid;place-items:center;color:var(--ink);
+    transition:background .2s,color .2s;
+  }
+  .foot .arrow-up:hover{background:var(--ink);color:var(--bg)}
+</style>
 </head>
 <body>
-  <h1>Terms of Service</h1>
-  <p><strong>Last updated: April 26, 2026</strong></p>
 
-  <h2>1. Overview</h2>
-  <p>This application ("motivationpj") is an automated content pipeline that generates and publishes motivational video clips to social media platforms including TikTok and YouTube.</p>
+<div class="legalbar">
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html" class="active">Terms of Service</a>
+</div>
 
-  <h2>2. Use of the App</h2>
-  <p>This app is operated by the account owner only. It is not a public-facing service and does not collect data from third-party users.</p>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="logo.png" alt="The Motivation PJ" onerror="this.style.display='none'" />
+      <div class="brand-name">Motivation<em>.</em>PJ</div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#videos">Videos</a>
+      <a href="index.html#quote">Daily quote</a>
+      <a href="index.html#follow">Follow</a>
+    </nav>
+    <a class="nav-cta" href="index.html#follow"><span class="dot"></span>Subscribe</a>
+  </div>
+</header>
 
-  <h2>3. Content</h2>
-  <p>All content generated by this app is original and created using AI tools. Content is intended for motivational and inspirational purposes only.</p>
+<main>
+  <div class="wrap">
+    <div class="page-header">
+      <div class="page-kicker">/ Legal</div>
+      <h1 class="page-title">Terms of<br /><span class="accent">Service.</span></h1>
+      <div class="page-meta">Last updated: April 26, 2026</div>
+    </div>
 
-  <h2>4. Third-Party Services</h2>
-  <p>This app integrates with TikTok and YouTube APIs in accordance with their respective terms of service.</p>
+    <div class="content">
+      <h2><span class="num">01</span>Overview</h2>
+      <p>This application ("The Motivation PJ") is an automated content pipeline that generates and publishes motivational video clips to social media platforms including TikTok and YouTube.</p>
+      <hr class="divider" />
 
-  <h2>5. Limitation of Liability</h2>
-  <p>The operator is not liable for any damages arising from the use of this application.</p>
+      <h2><span class="num">02</span>Use of the App</h2>
+      <p>This app is operated by the account owner only. It is not a public-facing service and does not collect data from third-party users.</p>
+      <hr class="divider" />
 
-  <h2>6. Contact</h2>
-  <p>For questions, contact: boundzpod@gmail.com</p>
+      <h2><span class="num">03</span>Content</h2>
+      <p>All content generated by this app is original and created using AI tools. Content is intended for motivational and inspirational purposes only.</p>
+      <hr class="divider" />
+
+      <h2><span class="num">04</span>Third-Party Services</h2>
+      <p>This app integrates with TikTok and YouTube APIs in accordance with their respective terms of service.</p>
+      <hr class="divider" />
+
+      <h2><span class="num">05</span>Limitation of Liability</h2>
+      <p>The operator is not liable for any damages arising from the use of this application.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="legal">© 2026 THE MOTIVATION PJ · IGNITE YOUR INNER POWER</div>
+    <div>Made with discipline · not motivation</div>
+    <a href="#" class="arrow-up" aria-label="back to top">↑</a>
+  </div>
+</footer>
+
 </body>
 </html>

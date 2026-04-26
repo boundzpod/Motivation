@@ -44,6 +44,25 @@
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 
+  /* ─────── Legal bar ─────── */
+  .legalbar{
+    background:var(--ink);
+    color:color-mix(in srgb, var(--bg) 55%, transparent);
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    display:flex;justify-content:flex-end;align-items:center;gap:20px;
+    padding:0 var(--pad);height:30px;
+  }
+  .legalbar a{
+    color:color-mix(in srgb, var(--bg) 55%, transparent);
+    transition:color .2s ease;
+  }
+  .legalbar a:hover{color:var(--accent)}
+  .legalbar a + a{
+    padding-left:20px;
+    border-left:1px solid rgba(255,255,255,.18);
+  }
+  body.dark .legalbar{background:#06090F}
+
   /* ─────── Top bar ─────── */
   .nav{
     position:sticky;top:0;z-index:50;
@@ -515,6 +534,12 @@
 </style>
 </head>
 <body>
+
+<!-- ─────────── LEGAL BAR ─────────── -->
+<div class="legalbar">
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+</div>
 
 <!-- ─────────── NAV ─────────── -->
 <header class="nav">
