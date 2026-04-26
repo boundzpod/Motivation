@@ -1,210 +1,956 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>motivationpj — Daily Motivation Clips</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Motivation PJ — Ignite Your Inner Power</title>
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Oswald:wght@500;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      line-height: 1.7;
-    }
+<style>
+  :root{
+    --bg:#F7F5EF;
+    --ink:#0F1B2D;
+    --ink-soft:#3A4658;
+    --rule:#E5E1D6;
+    --card:#FFFFFF;
+    --accent:#FF4D1F;
+    --accent-ink:#FFFFFF;
+    --navy:#0F2A44;
+    --display:'Anton', 'Archivo Black', system-ui, sans-serif;
+    --body:'Inter', system-ui, sans-serif;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --maxw: 1280px;
+    --pad: clamp(20px, 4vw, 56px);
+  }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      width: 100%;
-      max-height: 380px;
-      overflow: hidden;
-    }
-    .hero img {
-      width: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.7;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 30%, #0f0f0f);
-    }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
 
-    /* Container */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
 
-    /* Profile */
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-top: -60px;
-      position: relative;
-      padding-bottom: 32px;
-      border-bottom: 1px solid #222;
-    }
-    .profile img {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 4px solid #0f0f0f;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .profile-info h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .profile-info p {
-      color: #aaa;
-      font-size: 0.95rem;
-      margin-top: 6px;
-      max-width: 540px;
-    }
+  /* ─────── Top bar ─────── */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em}
+  .brand-logo{height:32px;width:auto}
+  .brand-name{font-family:var(--display);font-size:20px;letter-spacing:.04em;text-transform:uppercase}
+  .brand-name em{font-style:normal;color:var(--accent)}
+  .nav-links{display:flex;gap:28px;font-size:13px;font-weight:500;color:var(--ink-soft)}
+  .nav-links a{position:relative;padding:6px 0}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--bg);
+    padding:9px 14px;border-radius:999px;font-weight:600;font-size:13px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);background:var(--accent);color:var(--accent-ink)}
+  .nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent)}
+  .nav-cta:hover .dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 
-    /* Platforms */
-    .platforms {
-      padding: 36px 0;
-      border-bottom: 1px solid #222;
-    }
-    .platforms h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #666;
-      margin-bottom: 20px;
-    }
-    .platform-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .platform-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: opacity 0.2s;
-    }
-    .platform-btn:hover { opacity: 0.85; }
-    .platform-btn.youtube  { background: #FF0000; color: #fff; }
-    .platform-btn.tiktok   { background: #111; color: #fff; border: 1px solid #333; }
-    .platform-btn.instagram{ background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
-    .platform-btn.facebook { background: #1877F2; color: #fff; }
-    .platform-btn.coming   { background: #1e1e1e; color: #555; border: 1px dashed #333; cursor: default; }
+  @media (max-width:720px){
+    .nav-links{display:none}
+  }
 
-    .icon { font-size: 1.2rem; }
+  /* ─────── Hero ─────── */
+  .hero{
+    position:relative;
+    padding: clamp(48px, 8vw, 110px) 0 clamp(64px, 9vw, 130px);
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+    color:var(--ink-soft);text-transform:uppercase;
+    padding:6px 12px;border:1px solid var(--rule);border-radius:999px;
+    background:color-mix(in srgb, var(--card) 70%, transparent);
+  }
+  .hero-eyebrow .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent);
+    animation:pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent)}
+    100%{box-shadow:0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent)}
+  }
 
-    /* About */
-    .about {
-      padding: 36px 0;
-      border-bottom: 1px solid #222;
-    }
-    .about h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #666;
-      margin-bottom: 16px;
-    }
-    .about p { color: #bbb; font-size: 0.95rem; margin-bottom: 10px; }
+  .hero-title{
+    font-family:var(--display);
+    font-size: clamp(58px, 11.5vw, 184px);
+    line-height: .88;
+    letter-spacing: -.01em;
+    text-transform:uppercase;
+    margin: 22px 0 18px;
+    color:var(--ink);
+  }
+  .hero-title .line{display:block;overflow:hidden}
+  .hero-title .line span{display:inline-block;will-change:transform,opacity}
+  .hero-title .accent{color:var(--accent)}
+  .hero-title .outline{
+    -webkit-text-stroke: 2px var(--ink);
+    color:transparent;
+  }
 
-    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .tag {
-      background: #1e1e1e;
-      border: 1px solid #2a2a2a;
-      color: #aaa;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-    }
+  @keyframes rise{
+    from{transform:translateY(110%);opacity:0}
+    to{transform:translateY(0);opacity:1}
+  }
+  .hero-title .line span{animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+  .hero-title .line:nth-child(1) span{animation-delay:.05s}
+  .hero-title .line:nth-child(2) span{animation-delay:.18s}
+  .hero-title .line:nth-child(3) span{animation-delay:.31s}
 
-    /* Footer */
-    footer {
-      padding: 28px 0;
-      text-align: center;
-      color: #444;
-      font-size: 0.82rem;
-    }
-    footer a { color: #555; text-decoration: none; }
-    footer a:hover { color: #888; }
-  </style>
+  .hero-rotator{
+    display:inline-flex;align-items:baseline;gap:.35em;
+    font-family:var(--display);
+    font-size: clamp(28px, 4.4vw, 64px);
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    margin-top:8px;
+  }
+  .hero-rotator .label{color:var(--ink-soft);font-weight:400}
+  .hero-rotator .word{
+    color:var(--accent);
+    position:relative;
+    display:inline-block;
+    min-width: 4ch;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.4fr .9fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items:end;
+    margin-top: clamp(32px, 5vw, 64px);
+  }
+  @media (max-width:880px){ .hero-grid{grid-template-columns:1fr} }
+
+  .hero-lede{
+    font-size: clamp(15px, 1.4vw, 18px);
+    color:var(--ink-soft);
+    max-width: 46ch;
+    line-height:1.55;
+  }
+
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:999px;
+    font-weight:600;font-size:14px;letter-spacing:.01em;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    cursor:default;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-primary:hover{background:var(--ink);color:var(--bg)}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .btn .arrow{display:inline-block;transition:transform .2s ease}
+  .btn:hover .arrow{transform:translate(3px,-1px)}
+
+  .stats{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:18px;
+    padding:18px 20px;
+    position:relative;overflow:hidden;
+  }
+  .stat .num{
+    font-family:var(--display);
+    font-size: clamp(34px, 4.5vw, 56px);
+    line-height:1;letter-spacing:.01em;
+    color:var(--ink);
+  }
+  .stat .lbl{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--ink-soft);text-transform:uppercase;margin-top:8px;
+  }
+  .stat:nth-child(1){grid-column:span 2;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .stat:nth-child(1) .num{color:var(--bg)}
+  .stat:nth-child(1) .lbl{color:color-mix(in srgb, var(--bg) 65%, transparent)}
+  .stat .corner{position:absolute;right:14px;top:14px;font-family:var(--mono);font-size:10px;color:color-mix(in srgb, var(--ink-soft) 70%, transparent)}
+  .stat:nth-child(1) .corner{color:color-mix(in srgb, var(--bg) 55%, transparent)}
+
+  .hero-art{
+    position:absolute;inset:0;pointer-events:none;z-index:-1;
+  }
+  .hero-art .blob{
+    position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;
+  }
+  .hero-art .b1{width:520px;height:520px;background:color-mix(in srgb, var(--accent) 70%, transparent);right:-160px;top:-120px}
+  .hero-art .b2{width:420px;height:420px;background:color-mix(in srgb, var(--navy) 60%, transparent);left:-120px;bottom:-160px;opacity:.35}
+  .hero-art .grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  /* marquee */
+  .marquee{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    background:var(--ink);
+    color:var(--bg);
+    overflow:hidden;
+    padding: 22px 0;
+    position:relative;
+  }
+  .marquee-track{
+    display:flex;gap:48px;width:max-content;
+    animation: scroll 28s linear infinite;
+    font-family:var(--display);
+    font-size: clamp(36px, 5vw, 68px);
+    letter-spacing:.02em;text-transform:uppercase;
+  }
+  .marquee-track span{display:inline-flex;align-items:center;gap:48px;white-space:nowrap}
+  .marquee-track span::after{
+    content:"";display:inline-block;width:14px;height:14px;border-radius:50%;
+    background:var(--accent);
+  }
+  @keyframes scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* ─────── Sections ─────── */
+  section{padding: clamp(72px, 10vw, 130px) 0}
+  .section-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    margin-bottom: clamp(28px, 4vw, 56px);
+    border-bottom:1px solid var(--rule);
+    padding-bottom: 22px;
+  }
+  .section-kicker{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);
+  }
+  .section-title{
+    font-family:var(--display);
+    font-size: clamp(40px, 6.5vw, 96px);
+    line-height:.95;letter-spacing:-.01em;
+    margin: 8px 0 0;
+    text-transform:uppercase;
+  }
+  .section-title .accent{color:var(--accent)}
+
+  /* About */
+  .about-grid{
+    display:grid;grid-template-columns: 1.05fr .95fr;gap: clamp(28px, 5vw, 80px);
+    align-items:start;
+  }
+  @media (max-width:880px){ .about-grid{grid-template-columns:1fr} }
+  .about-lede{
+    font-family:var(--display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height:1.05;letter-spacing:-.005em;
+    text-transform:uppercase;
+  }
+  .about-lede em{font-style:normal;color:var(--accent)}
+  .about-body{font-size:16.5px;color:var(--ink-soft);max-width:54ch}
+  .about-body p + p{margin-top:14px}
+
+  .pillars{
+    margin-top: 28px;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  }
+  @media (max-width:680px){ .pillars{grid-template-columns:1fr} }
+  .pillar{
+    border:1px solid var(--rule);border-radius:14px;
+    padding:16px 16px 18px;background:var(--card);
+  }
+  .pillar .num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em}
+  .pillar .ttl{font-family:var(--display);font-size:18px;letter-spacing:.04em;text-transform:uppercase;margin:6px 0 4px}
+  .pillar .desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+
+  /* Videos */
+  .videos{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:18px;
+  }
+  .vcard{
+    grid-column:span 4;
+    border:1px solid var(--rule);border-radius:18px;background:var(--card);
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .2s ease;
+  }
+  .vcard:hover{transform:translateY(-3px);box-shadow:0 14px 40px -20px rgba(15,27,45,.25);border-color:color-mix(in srgb, var(--ink) 30%, var(--rule))}
+  .vcard.feat{grid-column:span 8;grid-row:span 2}
+  .vcard.wide{grid-column:span 8}
+  @media (max-width:980px){
+    .vcard,.vcard.feat,.vcard.wide{grid-column:span 12}
+    .vcard.feat{grid-row:auto}
+  }
+  .thumb{
+    position:relative;aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0F2A44 0%, #1A3A5F 60%, #0F2A44 100%);
+    overflow:hidden;
+  }
+  .vcard.feat .thumb{aspect-ratio: 16/10}
+  .thumb .ring{
+    position:absolute;inset:-20%;
+    background: conic-gradient(from 220deg, transparent 0 60%, color-mix(in srgb, var(--accent) 90%, transparent) 75%, transparent 90%);
+    filter:blur(36px);opacity:.55;
+  }
+  .thumb .typo{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-family:var(--display);
+    color:#fff;font-size:clamp(48px, 7vw, 110px);
+    letter-spacing:.04em;text-transform:uppercase;
+    text-shadow: 0 6px 30px rgba(0,0,0,.4);
+    text-align:center;line-height:.9;padding: 0 16px;
+  }
+  .thumb .typo small{display:block;font-size:.28em;letter-spacing:.18em;color:color-mix(in srgb, #fff 70%, transparent);font-weight:400;margin-top:.6em;font-family:var(--mono)}
+  .thumb .play{
+    position:absolute;left:18px;bottom:18px;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--accent);display:grid;place-items:center;
+    box-shadow:0 8px 22px rgba(255,77,31,.45);
+  }
+  .thumb .play::after{
+    content:"";display:block;width:0;height:0;
+    border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;
+    margin-left:3px;
+  }
+  .thumb .dur{
+    position:absolute;right:14px;bottom:14px;
+    font-family:var(--mono);font-size:11px;color:#fff;
+    background:rgba(0,0,0,.55);padding:4px 8px;border-radius:6px;
+    letter-spacing:.06em;
+  }
+  .thumb.alt-1{background: linear-gradient(135deg, #FF4D1F 0%, #C7321A 70%, #6A1B0E 100%)}
+  .thumb.alt-1 .ring{background: conic-gradient(from 40deg, transparent 0 60%, rgba(255,255,255,.5) 75%, transparent 90%)}
+  .thumb.alt-2{background: linear-gradient(135deg, #1B1F2A 0%, #2C3346 60%, #0E1118 100%)}
+  .thumb.alt-3{background: linear-gradient(135deg, #F4D35E 0%, #E58A1A 70%, #6E3B0A 100%)}
+  .thumb.alt-3 .typo{color:#1B1308}
+  .thumb.alt-3 .typo small{color:rgba(27,19,8,.7)}
+  .thumb.alt-4{background: linear-gradient(135deg, #0F2A44 0%, #FF4D1F 130%)}
+
+  .vmeta{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px}
+  .vtag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--ink-soft);text-transform:uppercase;
+  }
+  .vtag .pip{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .vtitle{
+    font-family:var(--display);font-size:22px;line-height:1.05;
+    letter-spacing:.02em;text-transform:uppercase;
+  }
+  .vcard.feat .vtitle{font-size:32px}
+  .vfoot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12.5px;color:var(--ink-soft);font-family:var(--mono)}
+
+  /* Quote section */
+  .quote-wrap{
+    background:var(--ink);color:var(--bg);
+    border-radius:24px;padding: clamp(36px,5vw,72px);
+    position:relative;overflow:hidden;
+  }
+  .quote-wrap::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 90% -10%, color-mix(in srgb, var(--accent) 70%, transparent), transparent 60%),
+      radial-gradient(500px 280px at -10% 110%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 60%);
+    pointer-events:none;
+  }
+  .quote-eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:color-mix(in srgb, var(--bg) 70%, transparent);
+    display:flex;align-items:center;gap:14px;
+  }
+  .quote-eyebrow .line{flex:1;height:1px;background:color-mix(in srgb, var(--bg) 25%, transparent);max-width:120px}
+  .quote-text{
+    font-family:var(--display);
+    font-size: clamp(34px, 5.6vw, 80px);
+    line-height: 1;letter-spacing:-.005em;
+    text-transform:uppercase;
+    margin: 22px 0 24px;
+    position:relative;
+  }
+  .quote-text .mark{color:var(--accent);font-size:1.2em;line-height:0;margin-right:.05em}
+  .quote-text .hl{
+    background: linear-gradient(transparent 65%, color-mix(in srgb, var(--accent) 80%, transparent) 65%);
+    padding:0 .08em;
+  }
+  .quote-foot{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    border-top:1px solid color-mix(in srgb, var(--bg) 18%, transparent);
+    padding-top:22px;
+  }
+  .quote-attr{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:color-mix(in srgb, var(--bg) 80%, transparent)}
+  .quote-attr b{color:var(--bg);font-weight:600}
+  .quote-nav{display:flex;gap:8px}
+  .qbtn{
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid color-mix(in srgb, var(--bg) 30%, transparent);
+    background:transparent;color:var(--bg);
+    display:grid;place-items:center;cursor:default;
+    transition:background .2s ease, border-color .2s ease, color .2s ease;
+    font-size:18px;
+  }
+  .qbtn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .qcount{font-family:var(--mono);font-size:13px;color:color-mix(in srgb, var(--bg) 70%, transparent);align-self:center;margin: 0 10px}
+
+  /* Follow */
+  .follow{
+    background:var(--bg);
+    padding-top: clamp(64px, 8vw, 110px);
+    padding-bottom: clamp(80px, 9vw, 130px);
+  }
+  .follow-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    margin-bottom: 36px;
+  }
+  .follow-title{
+    font-family:var(--display);
+    font-size: clamp(48px, 8vw, 128px);
+    line-height:.9;letter-spacing:-.01em;text-transform:uppercase;margin:0;
+  }
+  .follow-title .accent{color:var(--accent)}
+  .follow-sub{font-size:15px;color:var(--ink-soft);max-width:36ch;text-align:right}
+  @media (max-width:680px){.follow-head{flex-direction:column;align-items:flex-start}.follow-sub{text-align:left}}
+
+  .socials{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;
+  }
+  @media (max-width:880px){ .socials{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:480px){ .socials{grid-template-columns:1fr} }
+  .scard{
+    background:var(--card);border:1px solid var(--rule);
+    border-radius:20px;padding:22px 22px 24px;
+    display:flex;flex-direction:column;gap:10px;
+    position:relative;overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .2s ease, background .2s ease;
+  }
+  .scard:hover{transform:translateY(-3px);border-color:var(--ink)}
+  .scard:hover .sicon{transform:scale(1.06) rotate(-3deg)}
+  .scard:hover .sgo{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .sicon{
+    width:46px;height:46px;border-radius:12px;
+    display:grid;place-items:center;color:#fff;
+    transition:transform .25s ease;
+    font-family:var(--display);font-size:20px;
+  }
+  .scard.yt .sicon{background:#FF0033}
+  .scard.tt .sicon{background:#000}
+  .scard.fb .sicon{background:#1877F2}
+  .scard.ig .sicon{background: linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%)}
+  .splat{font-family:var(--display);font-size:24px;letter-spacing:.04em;text-transform:uppercase;margin-top:6px}
+  .shandle{font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+  .sgo{
+    margin-top:auto;align-self:flex-start;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 14px;border-radius:999px;
+    border:1px solid var(--rule);background:var(--bg);
+    font-size:13px;font-weight:600;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+
+  /* footer */
+  .foot{
+    border-top:1px solid var(--rule);
+    padding: 30px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+    flex-wrap:wrap;gap:14px;
+  }
+  .foot .legal{letter-spacing:.04em}
+  .foot .arrow-up{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--rule);
+    display:grid;place-items:center;color:var(--ink);
+    transition:background .2s ease, color .2s ease;
+  }
+  .foot .arrow-up:hover{background:var(--ink);color:var(--bg)}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.1,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Dark mode */
+  body.dark{
+    --bg:#0B0F17;
+    --ink:#F4F1E8;
+    --ink-soft:#9AA3B2;
+    --rule:#1E2532;
+    --card:#121826;
+    --navy:#0F2A44;
+  }
+  body.dark .nav-cta{background:var(--accent);color:#fff}
+  body.dark .nav-cta:hover{background:var(--bg);color:var(--ink);outline:1px solid var(--rule)}
+  body.dark .stat:nth-child(1){background:var(--accent);color:#fff;border-color:var(--accent)}
+  body.dark .stat:nth-child(1) .num{color:#fff}
+  body.dark .stat:nth-child(1) .lbl{color:rgba(255,255,255,.85)}
+  body.dark .quote-wrap{background:#06090F}
+  body.dark .marquee{background:#06090F}
+  body.dark .btn-primary:hover{background:var(--bg);color:var(--ink);border:1px solid var(--rule)}
+</style>
 </head>
 <body>
 
-  <!-- Banner -->
-  <div class="hero">
-    <img src="banner.png" alt="motivationpj banner">
-    <div class="hero-overlay"></div>
+<!-- ─────────── NAV ─────────── -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="The Motivation PJ home">
+      <img class="brand-logo" src="logo.png" alt="The Motivation PJ" onerror="this.style.display='none'" />
+      <div class="brand-name">Motivation<em>.</em>PJ</div>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#videos">Videos</a>
+      <a href="#quote">Daily quote</a>
+      <a href="#follow">Follow</a>
+    </nav>
+    <a class="nav-cta" href="#follow"><span class="dot"></span>Subscribe</a>
   </div>
+</header>
 
-  <div class="container">
-
-    <!-- Profile -->
-    <div class="profile">
-      <img src="logo.png" alt="motivationpj logo">
-      <div class="profile-info">
-        <h1>motivationpj</h1>
-        <p>🔥 Your daily dose of motivation. Fresh clips every day to keep you inspired, focused, and unstoppable. Follow &amp; never miss a drop!</p>
-      </div>
-    </div>
-
-    <!-- Platforms -->
-    <div class="platforms">
-      <h2>Follow us on</h2>
-      <div class="platform-grid">
-        <a class="platform-btn youtube" href="https://www.youtube.com/@boundzpod" target="_blank">
-          <span class="icon">▶</span> YouTube Shorts
-        </a>
-        <a class="platform-btn tiktok coming">
-          <span class="icon">♪</span> TikTok (coming soon)
-        </a>
-        <a class="platform-btn instagram coming">
-          <span class="icon">◈</span> Instagram (coming soon)
-        </a>
-        <a class="platform-btn facebook coming">
-          <span class="icon">f</span> Facebook (coming soon)
-        </a>
-      </div>
-    </div>
-
-    <!-- About -->
-    <div class="about">
-      <h2>About</h2>
-      <p>motivationpj delivers fresh motivational video clips automatically — 3 times a day, every day. Each clip features an original AI-generated quote, voiceover, and cinematic background.</p>
-      <p>Content is posted across YouTube Shorts, TikTok, Instagram Reels, and Facebook Reels.</p>
-      <div class="tag-list">
-        <span class="tag">#motivation</span>
-        <span class="tag">#mindset</span>
-        <span class="tag">#growth</span>
-        <span class="tag">#success</span>
-        <span class="tag">#resilience</span>
-        <span class="tag">#focus</span>
-        <span class="tag">#courage</span>
-        <span class="tag">#dailymotivation</span>
-        <span class="tag">#shorts</span>
-      </div>
-    </div>
-
+<!-- ─────────── HERO ─────────── -->
+<main id="top">
+<section class="hero">
+  <div class="hero-art" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
   </div>
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="pulse"></span>New episode every week · 2026</div>
 
-  <footer>
-    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
-    <a href="privacy.html">Privacy Policy</a>
-    <br><br>© 2026 motivationpj
-  </footer>
+    <h1 class="hero-title">
+      <span class="line"><span>Ignite&nbsp;your</span></span>
+      <span class="line"><span class="accent">inner&nbsp;power</span></span>
+      <span class="line"><span class="outline">— every&nbsp;day.</span></span>
+    </h1>
+
+    <div class="hero-rotator">
+      <span class="label">Built for the</span>
+      <span class="word" id="rot">dreamers</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="hero-lede">
+          The Motivation PJ is a daily fuel station for anyone refusing to settle. Short, sharp, story-driven content across YouTube, TikTok, Facebook and Instagram — designed to move you from <em>thinking about it</em> to <em>doing it</em>.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">Watch on YouTube <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="#follow">Follow everywhere</a>
+        </div>
+      </div>
+
+      <div class="stats" aria-hidden="true">
+        <div class="stat">
+          <span class="corner">/ 01</span>
+          <div class="num">365</div>
+          <div class="lbl">Episodes a year</div>
+        </div>
+        <div class="stat">
+          <span class="corner">/ 02</span>
+          <div class="num">4</div>
+          <div class="lbl">Platforms</div>
+        </div>
+        <div class="stat">
+          <span class="corner">/ 03</span>
+          <div class="num">∞</div>
+          <div class="lbl">Reasons to start</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── MARQUEE ─────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Discipline</span><span>Mindset</span><span>Grit</span><span>Action</span><span>Consistency</span><span>Belief</span>
+    <span>Discipline</span><span>Mindset</span><span>Grit</span><span>Action</span><span>Consistency</span><span>Belief</span>
+  </div>
+</div>
+
+<!-- ─────────── ABOUT ─────────── -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">/ 01 — About</div>
+        <h2 class="section-title">The mission<br /><span class="accent">in plain words.</span></h2>
+      </div>
+      <div class="section-kicker">— PJ</div>
+    </div>
+
+    <div class="about-grid reveal">
+      <div class="about-lede">
+        We don't sell hype. We hand you the <em>spark</em> — and the playbook to keep it burning long after the video ends.
+      </div>
+      <div class="about-body">
+        <p>The Motivation PJ exists for the people who feel something more is possible — but get stuck in the gap between knowing and doing. Each episode is built around a single, take-it-with-you idea: clear, short, and engineered to bend the next 24 hours of your life.</p>
+        <p>Whether you find us on YouTube long-form, in a TikTok short, on Facebook reels, or in your Instagram feed — the message is the same. Show up. Do the work. Repeat.</p>
+      </div>
+    </div>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="num">/ MIND</div>
+        <div class="ttl">Reframe daily</div>
+        <div class="desc">Tactical mindset shifts you can apply before lunch — not vague affirmations.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">/ BODY</div>
+        <div class="ttl">Move with intent</div>
+        <div class="desc">Discipline as a system, not a vibe. Systems compound. Vibes don't.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">/ CRAFT</div>
+        <div class="ttl">Build relentlessly</div>
+        <div class="desc">Stories of people who chose work over excuses — and what that cost them.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── VIDEOS ─────────── -->
+<section id="videos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">/ 02 — Watch</div>
+        <h2 class="section-title">Latest <span class="accent">drops.</span></h2>
+      </div>
+      <a class="btn btn-ghost" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">All episodes <span class="arrow">→</span></a>
+    </div>
+
+    <div class="videos reveal">
+      <a class="vcard feat" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="thumb">
+          <div class="ring"></div>
+          <div class="typo">Stop<br />Waiting<small>— Episode 042</small></div>
+          <div class="play" aria-label="play"></div>
+          <div class="dur">12:48</div>
+        </div>
+        <div class="vmeta">
+          <div class="vtag"><span class="pip"></span>Featured · YouTube</div>
+          <div class="vtitle">Stop waiting for permission to start.</div>
+          <div class="vfoot"><span>· The 5-minute rule that broke my procrastination</span><span>04 · 24</span></div>
+        </div>
+      </a>
+
+      <a class="vcard" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="thumb alt-1">
+          <div class="ring"></div>
+          <div class="typo">Burn<small>The boats</small></div>
+          <div class="play"></div>
+          <div class="dur">06:12</div>
+        </div>
+        <div class="vmeta">
+          <div class="vtag"><span class="pip"></span>YouTube short</div>
+          <div class="vtitle">Burn the boats. There is no plan B.</div>
+        </div>
+      </a>
+
+      <a class="vcard" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="thumb alt-2">
+          <div class="ring"></div>
+          <div class="typo">3am<small>The quiet hour</small></div>
+          <div class="play"></div>
+          <div class="dur">04:55</div>
+        </div>
+        <div class="vmeta">
+          <div class="vtag"><span class="pip"></span>TikTok</div>
+          <div class="vtitle">Why 3 AM tells the truth about you.</div>
+        </div>
+      </a>
+
+      <a class="vcard wide" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="thumb alt-3">
+          <div class="ring"></div>
+          <div class="typo">Show<br />Up<small>21 days · zero excuses</small></div>
+          <div class="play"></div>
+          <div class="dur">09:31</div>
+        </div>
+        <div class="vmeta">
+          <div class="vtag"><span class="pip"></span>Instagram reel</div>
+          <div class="vtitle">21 days, zero excuses — what actually changed.</div>
+        </div>
+      </a>
+
+      <a class="vcard" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="thumb alt-4">
+          <div class="ring"></div>
+          <div class="typo">Quiet<small>Confidence</small></div>
+          <div class="play"></div>
+          <div class="dur">07:08</div>
+        </div>
+        <div class="vmeta">
+          <div class="vtag"><span class="pip"></span>Facebook</div>
+          <div class="vtitle">The loudest people in the room are the least sure.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── QUOTE ─────────── -->
+<section id="quote">
+  <div class="wrap">
+    <div class="quote-wrap reveal">
+      <div class="quote-eyebrow"><span class="line"></span>Quote of the day · <span id="qdate"></span></div>
+      <blockquote class="quote-text" id="qtext">
+        <span class="mark">"</span><span class="hl" id="qbody">Discipline is choosing what you want most over what you want now.</span>
+      </blockquote>
+      <div class="quote-foot">
+        <div class="quote-attr">— <b id="qauthor">PJ</b> · Episode reflections</div>
+        <div class="quote-nav">
+          <button class="qbtn" id="qprev" aria-label="previous quote">←</button>
+          <span class="qcount" id="qcount">01 / 06</span>
+          <button class="qbtn" id="qnext" aria-label="next quote">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOLLOW ─────────── -->
+<section id="follow" class="follow">
+  <div class="wrap">
+    <div class="follow-head reveal">
+      <h2 class="follow-title">Follow<br /><span class="accent">everywhere.</span></h2>
+      <p class="follow-sub">Same message, four feeds. Pick the one you live in — we'll meet you there with something useful, every single day.</p>
+    </div>
+
+    <div class="socials reveal">
+      <a class="scard yt" href="https://www.youtube.com/@TheMotivationPJ" target="_blank" rel="noopener">
+        <div class="sicon" aria-hidden="true">▶</div>
+        <div class="splat">YouTube</div>
+        <div class="shandle">@TheMotivationPJ</div>
+        <span class="sgo">Subscribe →</span>
+      </a>
+      <a class="scard tt" href="#" target="_blank" rel="noopener">
+        <div class="sicon" aria-hidden="true">♪</div>
+        <div class="splat">TikTok</div>
+        <div class="shandle">@themotivationpj</div>
+        <span class="sgo">Follow →</span>
+      </a>
+      <a class="scard fb" href="#" target="_blank" rel="noopener">
+        <div class="sicon" aria-hidden="true">f</div>
+        <div class="splat">Facebook</div>
+        <div class="shandle">/TheMotivationPJ</div>
+        <span class="sgo">Like page →</span>
+      </a>
+      <a class="scard ig" href="#" target="_blank" rel="noopener">
+        <div class="sicon" aria-hidden="true">◎</div>
+        <div class="splat">Instagram</div>
+        <div class="shandle">@themotivationpj</div>
+        <span class="sgo">Follow →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="legal">© 2026 THE MOTIVATION PJ · IGNITE YOUR INNER POWER</div>
+    <div>Made with discipline · not motivation</div>
+    <a href="#top" class="arrow-up" aria-label="back to top">↑</a>
+  </div>
+</footer>
+</main>
+
+<!-- ─────────── React + Babel for Tweaks ─────────── -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<!-- ─────────── App scripts ─────────── -->
+<script>
+  // ── Hero rotator ──
+  (function(){
+    const words = ['dreamers','doers','builders','starters','grinders','believers'];
+    const el = document.getElementById('rot');
+    if(!el) return;
+    let i = 0;
+    function tick(){
+      i = (i+1) % words.length;
+      el.style.transition = 'transform .35s ease, opacity .35s ease';
+      el.style.transform = 'translateY(-10px)';
+      el.style.opacity = '0';
+      setTimeout(()=>{
+        el.textContent = words[i];
+        el.style.transform = 'translateY(10px)';
+        setTimeout(()=>{
+          el.style.transform = 'translateY(0)';
+          el.style.opacity = '1';
+        }, 30);
+      }, 350);
+    }
+    setInterval(tick, 2400);
+  })();
+
+  // ── Reveal on scroll ──
+  (function(){
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{ threshold:.12 });
+    els.forEach(el=>io.observe(el));
+  })();
+
+  // ── Quotes ──
+  (function(){
+    const quotes = [
+      { t:"Discipline is choosing what you want most over what you want now.", a:"PJ" },
+      { t:"You will never out-talk your habits. Build the system, the rest follows.", a:"PJ" },
+      { t:"The work nobody sees becomes the life everybody wants.", a:"PJ" },
+      { t:"Pressure is a privilege. It means you cared enough to try.", a:"PJ" },
+      { t:"Excuses are loud. Results are quiet. Be quiet.", a:"PJ" },
+      { t:"Your future self is watching this moment. Don't bore them.", a:"PJ" },
+    ];
+    const body = document.getElementById('qbody');
+    const author = document.getElementById('qauthor');
+    const count = document.getElementById('qcount');
+    const dateEl = document.getElementById('qdate');
+    const prev = document.getElementById('qprev');
+    const next = document.getElementById('qnext');
+    const fmt = n => String(n).padStart(2,'0');
+    const today = new Date();
+    if(dateEl) dateEl.textContent = today.toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}).toUpperCase();
+    let i = today.getDate() % quotes.length;
+    function render(){
+      const q = quotes[i];
+      body.style.opacity = 0;
+      body.style.transform = 'translateY(8px)';
+      setTimeout(()=>{
+        body.textContent = q.t;
+        author.textContent = q.a;
+        count.textContent = `${fmt(i+1)} / ${fmt(quotes.length)}`;
+        body.style.transition = 'opacity .35s ease, transform .35s ease';
+        body.style.opacity = 1;
+        body.style.transform = 'translateY(0)';
+      }, 200);
+    }
+    prev?.addEventListener('click',()=>{ i=(i-1+quotes.length)%quotes.length; render(); });
+    next?.addEventListener('click',()=>{ i=(i+1)%quotes.length; render(); });
+    render();
+  })();
+</script>
+
+<!-- ─────────── Tweaks app ─────────── -->
+<div id="tweaks-root"></div>
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#FF4D1F",
+    "displayFont": "Anton",
+    "tone": "Light",
+    "heroLayout": "Outline",
+    "marquee": true
+  }/*EDITMODE-END*/;
+
+  const FONT_STACKS = {
+    "Anton":        "'Anton', 'Archivo Black', system-ui, sans-serif",
+    "Archivo Black":"'Archivo Black', 'Anton', system-ui, sans-serif",
+    "Bebas Neue":   "'Bebas Neue', 'Anton', system-ui, sans-serif",
+    "Oswald":       "'Oswald', 'Anton', system-ui, sans-serif",
+    "Space Grotesk":"'Space Grotesk', system-ui, sans-serif",
+  };
+
+  const ACCENTS = [
+    { v:"#FF4D1F", label:"Inferno" },
+    { v:"#0F2A44", label:"Navy"    },
+    { v:"#E5B100", label:"Gold"    },
+    { v:"#0FB36D", label:"Limeade" },
+    { v:"#7A4DFF", label:"Electric"},
+  ];
+
+  function App(){
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+    React.useEffect(()=>{
+      document.documentElement.style.setProperty('--accent', t.accent);
+      document.documentElement.style.setProperty('--display', FONT_STACKS[t.displayFont] || FONT_STACKS.Anton);
+      document.body.classList.toggle('dark', t.tone === 'Dark');
+      const outline = document.querySelector('.hero-title .outline');
+      if(outline){
+        outline.classList.remove('outline','accent');
+        if(t.heroLayout === 'Outline') outline.classList.add('outline');
+        if(t.heroLayout === 'Solid')   outline.style.color = '';
+        if(t.heroLayout === 'Accent')  outline.classList.add('accent');
+      }
+      const m = document.querySelector('.marquee');
+      if(m) m.style.display = t.marquee ? '' : 'none';
+    }, [t]);
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Brand" />
+        <div className="twk-row">
+          <div className="twk-lbl"><span>Accent</span><span className="twk-val">{t.accent}</span></div>
+          <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+            {ACCENTS.map(a => (
+              <button key={a.v}
+                onClick={()=>setTweak('accent', a.v)}
+                title={a.label}
+                style={{
+                  width:26,height:26,borderRadius:8,
+                  background:a.v,
+                  border: t.accent===a.v ? '2px solid #29261b' : '1px solid rgba(0,0,0,.15)',
+                  cursor:'default',padding:0
+                }}/>
+            ))}
+          </div>
+        </div>
+        <TweakColor label="Custom accent" value={t.accent}
+          onChange={(v)=>setTweak('accent', v)} />
+
+        <TweakSection label="Typography" />
+        <TweakSelect label="Display font" value={t.displayFont}
+          options={Object.keys(FONT_STACKS)}
+          onChange={(v)=>setTweak('displayFont', v)} />
+
+        <TweakSection label="Layout" />
+        <TweakRadio label="Tone" value={t.tone}
+          options={['Light','Dark']}
+          onChange={(v)=>setTweak('tone', v)} />
+        <TweakRadio label="Hero last line" value={t.heroLayout}
+          options={['Outline','Solid','Accent']}
+          onChange={(v)=>setTweak('heroLayout', v)} />
+        <TweakToggle label="Show marquee" value={t.marquee}
+          onChange={(v)=>setTweak('marquee', v)} />
+      </TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
 
 </body>
 </html>
